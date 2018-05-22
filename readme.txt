@@ -27,6 +27,6 @@ Please install this plugin and activate it.
 == Changelog ==
 
 = 1.0 =
-* First Released.
+* First release.
 
 == Upgrade Notice ==
