@@ -4,9 +4,8 @@
 **      [password] and [password*]              # Single-line password
 **/
 
-// Activate Language Files
-load_plugin_textdomain('cf7-add-password-field', '/'.str_replace(ABSPATH, '', dirname(__FILE__)) . 'languages/');
-
+// Activate Language Files for WordPress 3.7 or lator
+load_plugin_textdomain('cf7-add-password-field');
 	
 function wpcf7_add_form_tag_k_password() {
 	wpcf7_add_form_tag( array('password','password*'),
