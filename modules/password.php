@@ -50,8 +50,15 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 	}
 
 	$atts['aria-invalid'] = $validation_error ? 'true' : 'false';
-
+	
 	$value = (string) reset( $tag->values );
+	
+	// Support placeholder. Reference: modules/date.php in the contact form 7 plugin.
+	if ( $tag->has_option( 'placeholder' )
+	or $tag->has_option( 'watermark' ) ) {
+		$atts['placeholder'] = $value;
+		$value = '';
+	}
 
 	$value = $tag->get_default_option( $value );
 
@@ -151,8 +158,13 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 				<td><input type="text" name="class" class="classvalue oneline option"
 				           id="<?php echo esc_attr( $args['content'] . '-class' ); ?>"/></td>
 			</tr>
-
-			</tbody>
+			
+			<tr>
+				<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-values' ); ?>"><?php echo esc_html( __( 'Default value', 'contact-form-7' ) ); ?></label></th>
+				<td><input type="text" name="values" class="oneline" id="<?php echo esc_attr( $args['content'] . '-values' ); ?>" /><br />
+	<label><input type="checkbox" name="placeholder" class="option" /> <?php echo esc_html( __( 'Use this text as the placeholder of the field', 'contact-form-7' ) ); ?></label></td>
+			</tr>
+		</tbody>
 		</table>
 	</fieldset>
 </div>

@@ -2,8 +2,8 @@
 Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
-Tested up to: 5.3.1
-Stable tag: 2.2
+Tested up to: 5.3.2
+Stable tag: 2.3
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -24,6 +24,10 @@ Please install this plugin and activate it.
 2. View of Contact Form 7
 
 == Changelog ==
+
+= 2.3 =
+* Add the option of placeholder text (https://contactform7.com/en/setting-placeholder-text/).
+* Tested up 5.3.2 with PHP 7.4
 
 = 2.2 =
 * Tested up 5.3.1
