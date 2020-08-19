@@ -9,7 +9,7 @@ load_plugin_textdomain('cf7-add-password-field');
 	
 function wpcf7_add_form_tag_k_password() {
 	$features = array( 'name-attr' => true );
-	apply_filters( 'cf7-add-password-field-features',$features );
+	$features = apply_filters( 'cf7-add-password-field-features',$features );
 	wpcf7_add_form_tag( array('password','password*'),
 		'wpcf7_k_password_form_tag_handler',$features );
 }
