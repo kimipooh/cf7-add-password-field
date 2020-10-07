@@ -8,7 +8,7 @@
 load_plugin_textdomain('cf7-add-password-field');
 	
 function wpcf7_add_form_tag_k_password() {
-	$features = array( 'name-attr' => true );
+	$features = array( 'name-attr' => true);
 	$features = apply_filters( 'cf7-add-password-field-features',$features );
 	wpcf7_add_form_tag( array('password','password*'),
 		'wpcf7_k_password_form_tag_handler',$features );
@@ -22,7 +22,9 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 	$validation_error = wpcf7_get_validation_error( $tag->name );
 
 	$class = wpcf7_form_controls_class( $tag->type, 'wpcf7-text' );
-
+	
+	$class .= ' wpcf7-validates-as-password';
+		
 	if ( $validation_error ) {
 		$class .= ' wpcf7-not-valid';
 	}
@@ -44,6 +46,9 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 
 	$atts['autocomplete'] = $tag->get_option( 'autocomplete',
 		'[-0-9a-zA-Z]+', true );
+
+	$atts['password_strength'] = (int)$tag->get_option( 'password_strength', 'signed_int', true);
+	$atts['password_min'] = (int)$tag->get_option( 'password_min', 'signed_int', true );
 
 	if ( $tag->is_required() ) {
 		$atts['aria-required'] = 'true';
@@ -92,9 +97,42 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 		? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
 		: '';
 
-	if ( 'password' == $tag->basetype ) {
-		if ( $tag->is_required() && '' == $value ) {
-			$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+	$password_strength = (int)$tag->get_option( 'password_strength','signed_int', true);
+	$password_min = (int) $tag->get_option( 'password_min', 'signed_int', true );
+	if ($password_strength < 0){
+		$password_strength = 0;
+	}
+	if ($password_min < 1){
+		$password_min = 1;
+	}
+	$pattern = preg_quote ($tag->get_option( 'pattern' ));
+
+	if ( $tag->is_required() and '' === $value ) {
+		$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+	}elseif ( '' !== $value ){
+		if(strlen($value) < $password_min) {
+			$result->invalidate($tag, __("Please limit the number of characters to at least ".$password_min.".", 'cf7-add-password-field' ));
+		}elseif ($password_strength > 0) {
+			if($password_strength === 1){
+				if(!preg_match("/^[0-9]+$/", $value)){
+					$result->invalidate($tag, __("Please use the numbers only", 'cf7-add-password-field' ));
+				}
+			}elseif($password_strength === 2){
+				if(!preg_match("/([0-9].*[a-z,A-Z])|([a-z,A-Z].*[0-9])/", $value) ){
+					$result->invalidate($tag, __("Please include one or more letters and numbers.", 'cf7-add-password-field' ));
+				}
+			}elseif($password_strength === 3){
+				if(!preg_match("/[0-9]/", $value) or
+				 !preg_match("/([a-z].*[A-Z])|([A-Z].*[a-z])/", $value)){
+					$result->invalidate($tag, __("Please include one or more upper and lower case letters and numbers.", 'cf7-add-password-field' ));
+				}
+			}elseif($password_strength === 4){
+				if(!preg_match("/[0-9]/", $value) or
+				 !preg_match("/([a-z].*[A-Z])|([A-Z].*[a-z])/", $value) or 
+				 !preg_match("/([!,%,&,@,#,$,^,*,?,_,~])/", $value)){
+					$result->invalidate($tag, __("Please include one or more upper and lower case letters, numbers, and marks.", 'cf7-add-password-field' ));
+				}
+			}
 		}
 	}
 
@@ -164,6 +202,27 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 				<td><input type="text" name="values" class="oneline" id="<?php echo esc_attr( $args['content'] . '-values' ); ?>" /><br />
 	<label><input type="checkbox" name="placeholder" class="option" /> <?php echo esc_html( __( 'Use this text as the placeholder of the field', 'contact-form-7' ) ); ?></label></td>
 			</tr>
+			<tr>
+				<th scope="row"><label
+					for="<?php echo esc_attr( $args['content'] . '-password_min' ); ?>"><?php echo esc_html( __( 'Password Length', 'contact-form-7' ) ); ?></label>
+				</th>
+				<td><input type="text" name="password_min" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-password_min' ); ?>"/><br/>
+				           <?php echo esc_html( __( 'Required more than the specified number of characters the input.', 'cf7-add-password-field' ) ); ?></td>
+			</tr>
+			<tr>
+				<th scope="row"><label
+					for="<?php echo esc_attr( $args['content'] . '-password_strength' ); ?>"><?php echo esc_html( __( 'Password Strength', 'contact-form-7' ) ); ?></label>
+				</th>
+				<td><input type="text" name="password_strength" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-password_strength' ); ?>" /><br/>
+				           1 = <?php echo esc_html( __( 'Numbers only', 'cf7-add-password-field' ) ); ?><br/>
+				           2 = <?php echo esc_html( __( 'Include letters and numbers', 'cf7-add-password-field' ) ); ?><br/>
+				           3 = <?php echo esc_html( __( 'Include upper and lower case letters and numbers', 'cf7-add-password-field' ) ); ?><br/>
+				           4 = <?php echo esc_html( __( 'Include upper and lower case letters, numbers, and marks', 'cf7-add-password-field' ) ); ?>
+				</td>
+			</tr>
+
 		</tbody>
 		</table>
 	</fieldset>
