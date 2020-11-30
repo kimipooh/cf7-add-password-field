@@ -38,12 +38,6 @@ jobs:
     - php: 7.4
     - php: 7.3
     
-
-before_install:
-  -  if [[ $TRAVIS_PHP_VERSION > '8.0' ]]; then
-        travis_retry composer self-update
-     fi
-
 install:
     - if [[ $TRAVIS_PHP_VERSION > '7.2' ]]; then
         wget -O ~/.phpenv/versions/$(phpenv version-name)/bin/phpunit https://phar.phpunit.de/phpunit-7.phar;
@@ -51,6 +45,9 @@ install:
     - if [[ $TRAVIS_PHP_VERSION > '7.2' ]]; then
         chmod 755 ~/.phpenv/versions/$(phpenv version-name)/bin/phpunit;
       fi
+  -  if [[ $TRAVIS_PHP_VERSION > '8.0' ]]; then
+        travis_retry composer self-update
+     fi
   -  if [[ $TRAVIS_PHP_VERSION > '8.0' ]]; then
         travis_retry composer install --ignore-platform-reqs
     fi
