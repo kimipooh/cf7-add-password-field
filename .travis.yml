@@ -42,7 +42,7 @@ before_script:
       echo "xdebug.ini does not exist"
     fi
   - |
-    if [[ "$TRAVIS_PHP_VERSION" == 'nightly' ]]; then
+    if [[ "$TRAVIS_PHP_VERSION" == "nightly" ]]; then
       #ignore php version check on nightly build
       #https://github.com/chartmogul/chartmogul-php/blob/main/.travis.yml
       composer install --ignore-platform-reqs
