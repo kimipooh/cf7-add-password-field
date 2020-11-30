@@ -42,26 +42,18 @@ before_script:
       echo "xdebug.ini does not exist"
     fi
   - |
-    if [[ "$TRAVIS_PHP_VERSION" == "nightly" ]]; then
-      #ignore php version check on nightly build
-      #https://github.com/chartmogul/chartmogul-php/blob/main/.travis.yml
-      composer install --ignore-platform-reqs
-    else
-      composer install
-    fi
-  - |
     if [[ ! -z "$WP_VERSION" ]] ; then
       bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
     fi
   - |
-    if [[ "$TRAVIS_PHP_VERSION" == "nightly" ]]; then
-      composer global require "phpunit/phpunit=7.4.*"
-    elif [[ $TRAVIS_PHP_VERSION >= 7.3 ]]; then
+    if [[ $TRAVIS_PHP_VERSION >= 7.3 ]]; then
      composer global require "phpunit/phpunit=7.4.*"
     elif [[ $TRAVIS_PHP_VERSION >= 7.0 ]]; then
       composer global require "phpunit/phpunit=5.7.*"
-    else
+    elif [[ $TRAVIS_PHP_VERSION >= 5.0 ]]; then
       composer global require "phpunit/phpunit=4.8.*"
+    else
+      composer global require "phpunit/phpunit=7.4.*"
     fi
   - |
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
