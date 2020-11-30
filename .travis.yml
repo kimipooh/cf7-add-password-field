@@ -43,7 +43,7 @@ before_install:
   -  if [[ $TRAVIS_PHP_VERSION > '7.5' ]]; then
         travis_retry composer self-update
      fi
-     
+
 install:
     - if [[ $TRAVIS_PHP_VERSION > '7.2' ]]; then
         wget -O ~/.phpenv/versions/$(phpenv version-name)/bin/phpunit https://phar.phpunit.de/phpunit-7.phar;
