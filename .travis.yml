@@ -46,13 +46,7 @@ before_script:
         bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
     if
   - |
-    if [[ ${TRAVIS_PHP_VERSION:0:2} == "8." ]]; then
-        composer global require "phpunit/phpunit=7.4.*"
-    elif [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]]; then
-        composer global require "phpunit/phpunit=5.7.*"
-    else
-        composer global require "phpunit/phpunit=4.8.*"
-    fi
+        composer global require "phpunit/phpunit=4.8.*|5.7.*|7.4.*"
   - |
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       composer global require wp-coding-standards/wpcs
