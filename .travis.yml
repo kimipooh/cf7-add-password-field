@@ -19,6 +19,8 @@ jobs:
   include:
     - php: nightly
       env: WP_VERSION=nightly
+    - php: nightly
+      env: WP_VERSION=latest
     - php: 7.4
       env: WP_VERSION=latest
     - php: 7.3
@@ -45,6 +47,9 @@ install:
       fi
 
 before_script:
+  -  if [[ $TRAVIS_PHP_VERSION > '7.5' ]]; then
+        travis_retry composer install --ignore-platform-reqs
+    fi
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - |
     if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
@@ -58,7 +63,7 @@ before_script:
     fi
   - |
     if [[ $TRAVIS_PHP_VERSION > '7.2' ]]; then
-      composer global require "phpunit/phpunit=7.5.*" --ignore-platform-req
+      composer global require "phpunit/phpunit=7.5.*"
     else
       composer global require "phpunit/phpunit=5.7.*|7.5.*"
     fi
