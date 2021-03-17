@@ -160,7 +160,7 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 ?>
 <div class="control-box">
 	<fieldset>
-		<legend><?php echo sprintf( esc_html( $description ), $desc_link ); ?></legend>
+		<legend><?php echo  esc_html( $description ); ?></legend>
 
 		<table class="form-table">
 		<tbody>
