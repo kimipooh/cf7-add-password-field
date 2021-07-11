@@ -49,6 +49,7 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 
 	$atts['password_strength'] = (int)$tag->get_option( 'password_strength', 'signed_int', true);
 	$atts['password_min'] = (int)$tag->get_option( 'password_min', 'signed_int', true );
+	$atts['password_check'] = $tag->get_option( 'password_check', '', true);
 
 	if ( $tag->is_required() ) {
 		$atts['aria-required'] = 'true';
@@ -64,7 +65,7 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 		$atts['placeholder'] = $value;
 		$value = '';
 	}
-
+	
 	$value = $tag->get_default_option( $value );
 
 	$value = wpcf7_get_hangover( $tag->name, $value );
@@ -97,8 +98,21 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 		? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
 		: '';
 
+	$password_check = $tag->get_option( 'password_check', '', true);
+	if(!empty($password_check)){
+		if(isset( $_POST[$password_check] )){
+			$value_pass = isset( $_POST[$password_check] )
+		? trim( wp_unslash( strtr( (string) $_POST[$password_check], "\n", " " ) ) )
+		: '';
+			if($value !== $value_pass ){
+					$result->invalidate($tag, __("Don't match the password!", 'cf7-add-password-field' ));		
+			}
+		}
+	}
+
 	$password_strength = (int)$tag->get_option( 'password_strength','signed_int', true);
 	$password_min = (int) $tag->get_option( 'password_min', 'signed_int', true );
+
 	if ($password_strength < 0){
 		$password_strength = 0;
 	}
@@ -204,7 +218,7 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 			</tr>
 			<tr>
 				<th scope="row"><label
-					for="<?php echo esc_attr( $args['content'] . '-password_min' ); ?>"><?php echo esc_html( __( 'Password Length', 'contact-form-7' ) ); ?></label>
+					for="<?php echo esc_attr( $args['content'] . '-password_min' ); ?>"><?php echo esc_html( __( 'Password Length', 'cf7-add-password-field' ) ); ?></label>
 				</th>
 				<td><input type="text" name="password_min" class="classvalue oneline option"
 				           id="<?php echo esc_attr( $args['content'] . '-password_min' ); ?>"/><br/>
@@ -212,7 +226,7 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 			</tr>
 			<tr>
 				<th scope="row"><label
-					for="<?php echo esc_attr( $args['content'] . '-password_strength' ); ?>"><?php echo esc_html( __( 'Password Strength', 'contact-form-7' ) ); ?></label>
+					for="<?php echo esc_attr( $args['content'] . '-password_strength' ); ?>"><?php echo esc_html( __( 'Password Strength', 'cf7-add-password-field' ) ); ?></label>
 				</th>
 				<td><input type="text" name="password_strength" class="classvalue oneline option"
 				           id="<?php echo esc_attr( $args['content'] . '-password_strength' ); ?>" /><br/>
@@ -220,6 +234,15 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 				           2 = <?php echo esc_html( __( 'Include letters and numbers', 'cf7-add-password-field' ) ); ?><br/>
 				           3 = <?php echo esc_html( __( 'Include upper and lower case letters and numbers', 'cf7-add-password-field' ) ); ?><br/>
 				           4 = <?php echo esc_html( __( 'Include upper and lower case letters, numbers, and marks', 'cf7-add-password-field' ) ); ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label
+					for="<?php echo esc_attr( $args['content'] . '-password_check' ); ?>"><?php echo esc_html( __( 'Password Check', 'cf7-add-password-field' ) ); ?></label>
+				</th>
+				<td><input type="text" name="password_check" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-password_check' ); ?>" /><br/>
+				           <?php echo esc_html( __( 'Enter the value of the “name” on the field if you wish to verify a value of a password field. In case of verifying the password value that you set [password password-100], set [password* password-101 password_check:password-100].', 'cf7-add-password-field' ) ); ?><br/>
 				</td>
 			</tr>
 

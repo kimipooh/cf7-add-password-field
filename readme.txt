@@ -3,7 +3,7 @@ Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 2.6
+Stable tag: 2.7
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -24,6 +24,10 @@ Please install this plugin and activate it.
 2. View of Contact Form 7
 
 == Changelog ==
+= 2.7 =
+* Fixed some language transtaion.
+* Added the ability to verify a field value like a password. 
+
 = 2.6 =
 * Fixed the error message regarding the description on the password generation form.
 * Tested up 5.7 with PHP 8.0
