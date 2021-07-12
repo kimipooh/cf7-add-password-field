@@ -6,7 +6,7 @@
 
 // Activate Language Files for WordPress 3.7 or lator
 load_plugin_textdomain('cf7-add-password-field');
-	
+
 function wpcf7_add_form_tag_k_password() {
 	$features = array( 'name-attr' => true);
 	$features = apply_filters( 'cf7-add-password-field-features',$features );
@@ -82,14 +82,25 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 
 	$atts = wpcf7_format_atts( $atts );
 
+/*
 	$html = sprintf(
 		'<span class="wpcf7-form-control-wrap %1$s"><input %2$s />%3$s</span>',
 		sanitize_html_class( $tag->name ), $atts, $validation_error );
-
+*/
+	$tag_id = $tag->get_id_option();
+	if( !empty($tag_id) && $tag_id === $tag->name ){
+		$html = sprintf(
+			'<span class="wpcf7-form-control-wrap %1$s"><input %2$s />%3$s<span style="position: relative; margin-left: -30px;"  id="buttonEye-'. $tag_id .'" class="fa fa-eye-slash" onclick="pushHideButton(\''. $tag_id .'\')"></span></span>',
+			sanitize_html_class( $tag->name ), $atts, $validation_error );
+	}else{
+		$html = sprintf(
+			'<span class="wpcf7-form-control-wrap %1$s"><input %2$s />%3$s</span>',
+			sanitize_html_class( $tag->name ), $atts, $validation_error );
+	}
 	return $html;
 }
-add_filter( 'wpcf7_validate_password', 'wpcf7_k_password_validation_filter', 10, 2 );
-add_filter( 'wpcf7_validate_password*', 'wpcf7_k_password_validation_filter', 10, 2 );
+//add_filter( 'wpcf7_validate_password', 'wpcf7_k_password_validation_filter', 10, 2 );
+//add_filter( 'wpcf7_validate_password*', 'wpcf7_k_password_validation_filter', 10, 2 );
 
 function wpcf7_k_password_validation_filter( $result, $tag ) {
 	$name = $tag->name;

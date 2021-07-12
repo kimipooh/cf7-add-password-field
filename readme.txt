@@ -3,7 +3,7 @@ Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 2.7
+Stable tag: 2.8
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -18,12 +18,24 @@ It's the simple.
 Please install this plugin and activate it.
 
 == Frequently Asked Questions ==
+= How to use the ability of the password check? =
+Enter the value of the "name" on the field if you wish to verify a value of a password field. 
+Ex. If you set [password password-100], set [password* password-101 password_check:password-100]. Please pay attention a miss with uppercase and lowercase letters.
+
+= How the use the ability to display a password? =
+Set the "id" and the value sets same as "name" value.
+Ex. If you set [password password-100], change to [password password-100 id:password-100].
+
+The feature uses the library(Web fonts and CSS) of Font Awesome ( https://fontawesome.com/ ).
 
 == Screenshots ==
 1. Setting of Contact Form 7
 2. View of Contact Form 7
 
 == Changelog ==
+= 2.8 =
+* Added the ability to display a password. Please refer to the FAQ for details.
+
 = 2.7 =
 * Fixed some language transtaion.
 * Added the ability to verify a field value like a password. 
