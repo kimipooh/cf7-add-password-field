@@ -3,7 +3,7 @@ Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 2.8
+Stable tag: 2.9
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -28,11 +28,18 @@ Ex. If you set [password password-100], change to [password password-100 id:pass
 
 The feature uses the library(Web fonts and CSS) of Font Awesome ( https://fontawesome.com/ ).
 
+= How the customize the validation check? =
+Please see the follwoing document.
+https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7-add-password-field_en
+
 == Screenshots ==
 1. Setting of Contact Form 7
 2. View of Contact Form 7
 
 == Changelog ==
+= 2.9 =
+* Added the hook "wpcf7_k_password_validation_filter" for customizing the validation check. Please refer to the FAQ for details.
+
 = 2.8 =
 * Added the ability to display a password. Please refer to the FAQ for details.
 

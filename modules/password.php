@@ -161,7 +161,7 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 		}
 	}
 
-	return $result;
+	return apply_filters('wpcf7_k_password_validation_filter', $result, $tag);
 }
 
 // Add Tag.
