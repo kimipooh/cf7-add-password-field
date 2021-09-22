@@ -2,8 +2,8 @@
 Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
-Tested up to: 5.8
-Stable tag: 2.9
+Tested up to: 5.8.1
+Stable tag: 2.91
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -37,6 +37,9 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 2. View of Contact Form 7
 
 == Changelog ==
+= 2.91 =
+* The css and webfonts powered by fontawesome.com for the password display icon was involded to the plugin for supporting an offline or CDN.
+
 = 2.9 =
 * Added the hook "wpcf7_k_password_validation_filter" for customizing the validation check. Please refer to the FAQ for details.
 

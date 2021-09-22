@@ -3,7 +3,7 @@
 Plugin Name: Contact Form 7 Add Password field
 Plugin URI: https://wordpress.org/plugins/cf7-add-password-field/
 Description: The plugin is to add a password filed to Contact form 7 plugin.
-Version: 2.9
+Version: 2.91
 Author: Kimiya Kitani
 Author URI: https://profiles.wordpress.org/kimipooh/
 Text Domain: cf7-add-password-field
@@ -27,7 +27,7 @@ add_filter( 'wpcf7_validate_password*', 'wpcf7_k_password_validation_filter', 10
 
 function regist_cf7_add_password_field_styles() {
     $plugin_url = plugin_dir_url( __FILE__ );
-    wp_enqueue_style('cf7_add_password_field_style', 'https://use.fontawesome.com/releases/v5.15.3/css/all.css' );
+    wp_enqueue_style('cf7_add_password_field_style', $plugin_url . 'css/all.css' );
 }
 function regist_cf7_add_password_field_scripts() {
     $plugin_url = plugin_dir_url( __FILE__ );
