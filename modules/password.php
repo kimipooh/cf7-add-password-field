@@ -136,7 +136,7 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 		$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
 	}elseif ( '' !== $value ){
 		if(strlen($value) < $password_min) {
-			$result->invalidate($tag, __("Please limit the number of characters to at least ".$password_min.".", 'cf7-add-password-field' ));
+			$result->invalidate($tag, __("Please limit the number of characters to at least: ",'cf7-add-password-field') . $password_min);
 		}elseif ($password_strength > 0) {
 			if($password_strength === 1){
 				if(!preg_match("/^[0-9]+$/", $value)){
