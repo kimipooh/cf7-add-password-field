@@ -16,7 +16,7 @@ jobs:
         strategy:
             matrix:
                 operating-system: [ ubuntu-latest ]
-                php: [ '7.1', '7.2', '7.3', '7.4' ]
+                php: [ '5.6','7.3', '7.4', '8.0', '8.1' ]
                 wp: [ 'nightly', 'latest' ]
         services:
             mysql:
@@ -32,9 +32,7 @@ jobs:
               uses: nanasess/setup-php@master
               with:
                   php-version: ${{ matrix.php }}
-                  tools: phpunit-polyfills
-
-
+                  tools: phpunit-polyfills, phpunit:${{ matrix.phpunit-versions }} 
             - name: Validate composer.json and composer.lock
               run: composer validate
 
