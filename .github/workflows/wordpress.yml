@@ -16,7 +16,7 @@ jobs:
         strategy:
             matrix:
                 operating-system: [ ubuntu-latest ]
-                php: [ '8.0' ]
+                php: [ '7.3', '7,4', '8.0', '8.1' ]
                 phpunit-versions: [ 'latest' ]
                 wp: [ 'nightly', 'latest' ]
         services:
