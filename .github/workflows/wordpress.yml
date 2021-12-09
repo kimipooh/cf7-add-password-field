@@ -32,6 +32,8 @@ jobs:
               uses: nanasess/setup-php@master
               with:
                   php-version: ${{ matrix.php }}
+                  tools: phpunit-polyfills
+
 
             - name: Validate composer.json and composer.lock
               run: composer validate
