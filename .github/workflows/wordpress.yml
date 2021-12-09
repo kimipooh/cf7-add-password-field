@@ -32,6 +32,8 @@ jobs:
               uses: nanasess/setup-php@master
               with:
                   php-version: ${{ matrix.php }}
+                  tools: phpunit-polyfills
+
 
             - name: Validate composer.json and composer.lock
               run: composer validate
@@ -46,4 +48,4 @@ jobs:
               run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1 ${{ matrix.wp }}
 
             - name: Run test suite
-              run: phpunit tests
+              run: phpunit
