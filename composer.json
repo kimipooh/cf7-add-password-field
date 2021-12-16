@@ -2,18 +2,8 @@
         "name": "kimipooh/cf7-add-password-field",
         "description": "The plugin is to add a password filed to Contact form 7 plugin.",
         "minimum-stability": "stable",
+        "type": "wordpress-plugin",
         "license": "GPL-2.0-or-later",
-        "scripts": {
-                "test": "phpunit",
-                "lint": [
-                        "phpcs --config-set installed_paths $(pwd)/vendor/wp-coding-standards/wpcs",
-                        "phpcs --standard=phpcs.ruleset.xml $(find ./ -name '*.php')"
-                ],
-                "fix": [
-                        "phpcs --config-set installed_paths $(pwd)/vendor/wp-coding-standards/wpcs",
-                        "phpcbf --standard=phpcs.ruleset.xml $(find ./ -name '*.php')"
-                ]
-        },
         "authors": [
                 {
                         "name": "Kimiya Kitani",
@@ -21,15 +11,13 @@
                 }
         ],
         "require": {
-                "php": "^5.6|^7.0"
+                "php": ">=5.6"
         },
-        "require-dev": {
-		"phpunit/phpunit": "^5.7.21 || ^6.5 || ^7.5",
-                "yoast/phpunit-polyfills": "^1.0"
-        },
-        "autoload": {
-                "psr-0": {
-                        "kimipooh\\cf7-add-password-field": "src"
-                }
-        }
+       "require-dev": {
+         "wp-coding-standards/wpcs": "^2.3",
+         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+         "phpcompatibility/phpcompatibility-wp": "^2.1",
+         "yoast/phpunit-polyfills": "^1.0.1",
+         "phpunit/phpunit": "^5.7.21 || ^6.5 || ^7.5"
+    }
 }
