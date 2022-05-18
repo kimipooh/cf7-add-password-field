@@ -3,7 +3,7 @@ Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 2.10
+Stable tag: 2.11
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -37,6 +37,9 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 2. View of Contact Form 7
 
 == Changelog ==
+= 2.11 =
+* Fixed the password strength check.
+
 = 2.10 =
 * Added character count option "minlength" ad "maxlength" implemented in Contact Form 7 plugin.
 * If both of "password_min" and "minlength" are set, the "minlength" setting takes precedence.
