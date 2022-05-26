@@ -150,7 +150,7 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 		}elseif(strlen($value) < $password_min) {
 			$result->invalidate($tag, __("Please limit the number of characters to at least: ",'cf7-add-password-field') . $password_min);
 		}
-		
+
 		if ($password_strength > 0) {
 			if($password_strength === 1){
 				if(!preg_match("/^[0-9]+$/", $value)){
@@ -249,7 +249,7 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 				           id="<?php echo esc_attr( $args['content'] . '-minlength' ); ?>"/><br/>
 				           <?php echo esc_html( __( 'Required more than the specified number of characters the input.', 'cf7-add-password-field' ) ); ?><br/>
 				           Max <input type="text" name="maxlength" class="classvalue oneline option"
-				           id="<?php echo esc_attr( $args['content'] . '-naxlength' ); ?>"/><br/>
+				           id="<?php echo esc_attr( $args['content'] . '-maxlength' ); ?>"/><br/>
 				           <?php echo esc_html( __( 'Required less than the specified number of characters the input.', 'cf7-add-password-field' ) ); ?></td>
 			</tr>
 			<tr>

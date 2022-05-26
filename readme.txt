@@ -37,6 +37,9 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 2. View of Contact Form 7
 
 == Changelog ==
+= 3.1 =
+*Fixed misspelling of id in maxlength on input tag (it was naxlength).
+
 = 3.0 =
 * Fixed the password strength check.
 
