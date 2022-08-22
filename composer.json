@@ -21,11 +21,5 @@
          "phpunit/phpunit": "^5.7.21 || ^6.5 || ^7.5"
     }
 
-​​​"config": {
-    "allow-plugins": {
-        "composer/installers": true,
-        "dealerdirect/phpcodesniffer-composer-installer": true,
-        "roots/wordpress-core-installer": true
-     }
-},​​​​​
+​​​​​​
 }
