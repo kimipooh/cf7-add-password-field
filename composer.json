@@ -20,4 +20,14 @@
          "yoast/phpunit-polyfills": "^1.0.1",
          "phpunit/phpunit": "^5.7.21 || ^6.5 || ^7.5"
     }
+
+​​​"config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "allow-plugins": {
+        "composer/installers": true,
+        "dealerdirect/phpcodesniffer-composer-installer": true,
+        "roots/wordpress-core-installer": true
+     }
+},​​​​​
 }
