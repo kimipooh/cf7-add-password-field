@@ -38,11 +38,11 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 
 == Changelog ==
 = 3.2 =
-*Fixed the markup changes in form controls, such as error message, since the version 5.6 of Contact Form 7 plugin (https://contactform7.com/2022/05/20/contact-form-7-56-beta/).
-*Tested up 6.1
+* Fixed the markup changes in form controls, such as error message, since the version 5.6 of Contact Form 7 plugin (https://contactform7.com/2022/05/20/contact-form-7-56-beta/).
+* Tested up 6.1
 
 = 3.1 =
-*Fixed misspelling of id in maxlength on input tag (it was naxlength).
+* Fixed misspelling of id in maxlength on input tag (it was naxlength).
 
 = 3.0 =
 * Fixed the password strength check.
