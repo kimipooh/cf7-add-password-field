@@ -2,7 +2,7 @@
 Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
-Tested up to: 6.0.1
+Tested up to: 6.1
 Stable tag: 3.2
 
 The plugin is to add a password filed to Contact form 7 plugin.
