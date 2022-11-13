@@ -50,6 +50,7 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 	$atts['password_strength'] = (int)$tag->get_option( 'password_strength', 'signed_int', true);
 	$atts['password_min'] = (int)$tag->get_option( 'password_min', 'signed_int', true );
 	$atts['password_check'] = $tag->get_option( 'password_check', '', true);
+	$atts['specific_password_check'] = $tag->get_option( 'specific_password_check', '', true);
 
 	if ( $tag->is_required() ) {
 		$atts['aria-required'] = 'true';
@@ -108,6 +109,21 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 	$value = isset( $_POST[$name] )
 		? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
 		: '';
+
+	$specific_password_check = $tag->get_option( 'specific_password_check', '', true);
+	if(!empty($specific_password_check)){
+		$value_pass_array = explode("_", str_replace(" ", "", $specific_password_check));
+		$flag = false;
+		foreach($value_pass_array as $each_value_pass){
+			if($value === $each_value_pass ){
+				$flag = true;
+				 break;
+			}
+		}
+		if( $flag === false){
+			$result->invalidate($tag, __("Don't match the defined password!", 'cf7-add-password-field' ));		
+		}
+	}
 
 	$password_check = $tag->get_option( 'password_check', '', true);
 	if(!empty($password_check)){
@@ -273,7 +289,15 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 				           <?php echo esc_html( __( 'Enter the value of the “name” on the field if you wish to verify a value of a password field. In case of verifying the password value that you set [password password-100], set [password* password-101 password_check:password-100].', 'cf7-add-password-field' ) ); ?><br/>
 				</td>
 			</tr>
-
+			<tr>
+				<th scope="row"><label
+					for="<?php echo esc_attr( $args['content'] . '-specific_password_check' ); ?>"><?php echo esc_html( __( 'Specific Password Check', 'cf7-add-password-field' ) ); ?></label>
+				</th>
+				<td><input type="text" name="specific_password_check" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-specific_password_check' ); ?>". placeholder="password1_password2"/><br/>
+				           <?php echo esc_html( __( ' Enter your password separated by underline(Passwords cannot contain underline and marks escaped by preg_quote are not allowed.). Check if it matches the password entered here. If you have set a password strength, the password set here should also follow that rule.', 'cf7-add-password-field' ) ); ?><br/>
+				</td>
+			</tr>
 		</tbody>
 		</table>
 	</fieldset>
