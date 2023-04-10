@@ -121,7 +121,7 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 			}
 		}
 		if( $flag === false){
-			$result->invalidate($tag, __("Don't match the defined password!", 'cf7-add-password-field' ));		
+			$result->invalidate($tag, __("Passwords do not match defined!", 'cf7-add-password-field' ));		
 		}
 	}
 
@@ -132,7 +132,7 @@ function wpcf7_k_password_validation_filter( $result, $tag ) {
 		? trim( wp_unslash( strtr( (string) $_POST[$password_check], "\n", " " ) ) )
 		: '';
 			if($value !== $value_pass ){
-					$result->invalidate($tag, __("Don't match the password!", 'cf7-add-password-field' ));		
+					$result->invalidate($tag, __("Passwords do not match!", 'cf7-add-password-field' ));		
 			}
 		}
 	}

@@ -3,7 +3,7 @@ Contributors: Kimiya Kitani
 Tags: contact form
 Requires at least: 5.0
 Tested up to: 6.1
-Stable tag: 3.3
+Stable tag: 3.31
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -37,6 +37,9 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 2. View of Contact Form 7
 
 == Changelog ==
+= 3.31 =
+* Fixed some error message.
+
 = 3.3 =
 * Added "specific_password_check" option for matching with specific passwords specified in advance.
 
