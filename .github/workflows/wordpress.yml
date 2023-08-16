@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         # Notes regarding supported versions in WP:
-        php: ['7.4', '8.0', '8.1, '8.2']
+        php: ['7.4', '8.0', '8.1', '8.2']
         wp: ['latest']
         experimental: [false]
 
