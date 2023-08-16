@@ -91,7 +91,9 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 	$atts = wpcf7_format_atts( $atts );
 
 	$tag_id = $tag->get_id_option();
-	if( !empty($tag_id) && $tag_id === $tag->name ){
+	if( empty($tag_id) ) $tag_id = $tag->name; // for the version 5.8 of Contact form 7: Contact form 7 ignores the id attribute if the same ID is already used for another element.
+
+	if( $tag_id === $tag->name ){
 		$html = sprintf(
 			'<span class="wpcf7-form-control-wrap" data-name="%1$s"><input %2$s />%3$s<span style="position: relative; margin-left: -30px;"  id="buttonEye-'. $tag_id .'" class="fa fa-eye-slash" onclick="pushHideButton(\''. $tag_id .'\')"></span></span>',
 			sanitize_html_class( $tag->name ), $atts, $validation_error );
