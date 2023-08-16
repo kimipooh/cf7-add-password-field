@@ -38,7 +38,7 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 2. View of Contact Form 7
 
 == Changelog ==
-= 3.4 =
+= 4.0 =
 * Fxied the issue for the version 5.8 of Contact form 7; Since the version 5.8 of Contact form 7 ignores the id attribute if the same ID is already used for another element.
 * Changed to require WordPress 6.2+ and PHP 7.4+ according to the specifications required by Contact Form 7 itself.
 
