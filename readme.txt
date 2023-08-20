@@ -41,6 +41,7 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 = 4.1 =
 * Update the css and webfonts powered by fontawesome.com from 5.15.4 to version 6.4.2.
 * New "HideIcon" option has been added. By setting this, it can hide the icon for displaying passwords.
+* Tested up WordPress 6.3 with PHP 8.2.
 
 = 4.0 =
 * Fxied the issue for the version 5.8 of Contact form 7; Since the version 5.8 of Contact form 7 ignores the id attribute if the same ID is already used for another element.
