@@ -4,7 +4,7 @@ Tags: contact form
 Requires at least: 6.2
 Requires PHP: 7.4
 Tested up to: 6.3
-Stable tag: 4.0
+Stable tag: 4.1
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -38,6 +38,10 @@ https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7
 2. View of Contact Form 7
 
 == Changelog ==
+= 4.1 =
+* Update the css and webfonts powered by fontawesome.com from 5.15.4 to version 6.4.2.
+* New "HideIcon" option has been added. By setting this, it can hide the icon for displaying passwords.
+
 = 4.0 =
 * Fxied the issue for the version 5.8 of Contact form 7; Since the version 5.8 of Contact form 7 ignores the id attribute if the same ID is already used for another element.
 * Changed to require WordPress 6.2+ and PHP 7.4+ according to the specifications required by Contact Form 7 itself.
