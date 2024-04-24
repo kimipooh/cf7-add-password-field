@@ -1,5 +1,5 @@
 === Contact Form 7 Add Password field ===
-Contributors: Kimiya Kitani
+Contributors: kimipooh
 Tags: contact form
 Requires at least: 6.2
 Requires PHP: 7.4
