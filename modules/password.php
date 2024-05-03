@@ -51,6 +51,26 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 	$atts['password_check'] = $tag->get_option( 'password_check', '', true);
 	$atts['specific_password_check'] = $tag->get_option( 'specific_password_check', '', true);
 	$atts['hideIcon'] = $tag->has_option( 'hideIcon' );	
+	
+	$atts['Icon_position'] = $tag->get_option( 'Icon_position', '', true);
+	$atts['Icon_float'] = $tag->get_option( 'Icon_float', '', true);
+	$atts['Icon_top'] = $tag->get_option( 'Icon_top', '', true);
+	$atts['Icon_margin'] = $tag->get_option( 'Icon_margin', '', true);
+	$atts['Icon_marginleft'] = $tag->get_option( 'Icon_marginleft', '', true);
+	
+	if($tag->has_option( 'Icon_position' ) && !empty($atts['Icon_position'])){
+		$style_attrib = 'position:'. $atts['Icon_position'] . '; ';
+		if($tag->has_option( 'Icon_float' ) && !empty($atts['Icon_float']))
+			$style_attrib .= 'float:'. $atts['Icon_float'] . '; ';
+		if($tag->has_option( 'Icon_top' ) && !empty($atts['Icon_top']))
+			$style_attrib .= 'top:'. $atts['Icon_top'] . '; ';
+		if($tag->has_option( 'Icon_margin' ) && !empty($atts['Icon_margin']))
+			$style_attrib .= 'margin:'. $atts['Icon_margin'] . '; ';
+		if($tag->has_option( 'Icon_marginleft' ) && !empty($atts['Icon_marginleft']))
+			$style_attrib .= 'margin-left:'. $atts['Icon_marginleft'] . '; ';			
+	}else{
+		$style_attrib = 'position: relative; margin-left: -30px;';
+	}
 
 	if ( $tag->is_required() ) {
 		$atts['aria-required'] = 'true';
@@ -93,8 +113,8 @@ function wpcf7_k_password_form_tag_handler( $tag ) {
 	if( empty($tag_id) ) $tag_id = $tag->name; // for the version 5.8 of Contact form 7: Contact form 7 ignores the id attribute if the same ID is already used for another element.
 
 	if( $tag_id === $tag->name && !$tag->has_option( 'hideIcon' ) ){
- 		$html = sprintf(
-			'<span class="wpcf7-form-control-wrap" data-name="%1$s"><input %2$s />%3$s<span style="position: relative; margin-left: -30px;"  id="buttonEye-'. $tag_id .'" class="fa fa-eye-slash" onclick="pushHideButton(\''. $tag_id .'\')"></span></span>',
+ 		  $html = sprintf(
+			'<span class="wpcf7-form-control-wrap" data-name="%1$s"><input %2$s />%3$s<span style="'. $style_attrib .'"  id="buttonEye-'. $tag_id .'" class="fa fa-eye-slash" onclick="pushHideButton(\''. $tag_id .'\')"></span></span>',
 			sanitize_html_class( $tag->name ), $atts, $validation_error );
 	}else{
 		$html = sprintf(
@@ -237,7 +257,8 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 					for="<?php echo esc_attr( $args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Id attribute', 'contact-form-7' ) ); ?></label>
 				</th>
 				<td><input type="text" name="id" class="idvalue oneline option"
-				           id="<?php echo esc_attr( $args['content'] . '-id' ); ?>"/></td>
+				           id="<?php echo esc_attr( $args['content'] . '-id' ); ?>"/><br/>
+				           <?php echo esc_html( __( 'If the ability to display a password wish be enabled, set the same value of  “id attribute” and “name”.', 'cf7-add-password-field' ) ); ?><br/></td>
 			</tr>
 
 			<tr>
@@ -303,7 +324,29 @@ function wpcf7_k_password_pane_confirm( $contact_form, $args = '' ) {
 					</fieldset>
 				</td>
 			</tr>
-		</tbody>
+			<tr>
+				<th scope="row"><?php echo esc_html( __( 'Icon Location', 'contact-form-7' ) ); ?></th>
+				<td>
+					<fieldset>
+						<legend class="screen-reader-text"><?php echo esc_html( __( 'Icon Location', 'contact-form-7' ) ); ?></legend>
+						<label><?php echo esc_html( __( 'If you wish to customize the position of the icons, please set the following stylesheet values.', 'contact-form-7' ) );?>
+						<br/>
+						<table>
+						<tr><td>position:</td><td><input type="text" name="Icon_position" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-Icon_position' ); ?>"/></td></tr>
+						<tr><td>float:</td><td><input type="text" name="Icon_float" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-Icon_float' ); ?>"/></td></tr>
+						<tr><td>top:</td><td><input type="text" name="Icon_top" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-Icon_top' ); ?>"/></td></tr>
+						<tr><td>margin:</td><td><input type="text" name="Icon_margin" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-Icon_margin' ); ?>"/></td></tr>
+						<tr><td>margin-left:</td><td><input type="text" name="Icon_marginleft" class="classvalue oneline option"
+				           id="<?php echo esc_attr( $args['content'] . '-Icon_marginleft' ); ?>"/></td></tr>
+				        </table>
+					</fieldset>
+				</td>
+			</tr>
+ 		</tbody>
 		</table>
 	</fieldset>
 </div>
