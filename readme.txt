@@ -5,6 +5,9 @@ Requires at least: 6.2
 Requires PHP: 7.4
 Tested up to: 6.5.2
 Stable tag: 4.2
+License: GPL v2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
 
 The plugin is to add a password filed to Contact form 7 plugin.
  
@@ -30,8 +33,13 @@ Ex. If you set [password password-100], change to [password password-100 id:pass
 The feature uses the library(Web fonts and CSS) of Font Awesome ( https://fontawesome.com/ ).
 
 = How the customize the validation check? =
-Please see the follwoing document.
+Please see the following document.
 https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7-add-password-field_en
+
+= How to save a password in hashed form =
+This plugin only adds a password field the Contact Form 7 plugin and does not encrypt(hash) input data.
+If you want to hash a password value for keeping a database using an other plugin or sending by email, you need to add the code for hashing the data  when you submit it pass through Contact Form 7, for example in your theme’s functions.php.
+Reference: “Changing Contact Form 7 input values (28 January, 2023)” in https://info.cseas.kyoto-u.ac.jp/en/links-en/plugin-en/wordpress-dev-info-en/cf7-add-password-field_en
 
 == Screenshots ==
 1. Setting of Contact Form 7
