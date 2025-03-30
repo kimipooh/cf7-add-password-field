@@ -4,7 +4,7 @@ Tags: contact form
 Requires at least: 6.2
 Requires PHP: 7.4
 Tested up to: 6.7.2
-Stable tag: 5.0
+Stable tag: 5.0.1
 License: GPL v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,9 +46,11 @@ Reference: “Changing Contact Form 7 input values (28 January, 2023)” in http
 2. View of Contact Form 7
 
 == Changelog ==
+= 5.0.1 = 
+* Tested up WordPress 6.7.2 with PHP 8.3.19 and 8.4.5.
+
 = 5.0 =
 *Supported for the Tag generator (version 2), which was changed in version 6.0 of Contact Form 7. For more information, please see https://aurisecreative.com/blog/2024/11/how-to-use-tag-generator-version-2-in-contact-form-7/.
-* Tested up WordPress 6.7.2 with PHP 8.3.19 and 8.4.5.
 
 = 4.2 =
 * Added 5 options (Icon_position, Icon_float, Icon_top, Icon_margin, Icon_marginleft) to customize icon position. Each of them corresponds to position, float, top, margin, and margin-left. The position setting is required for customization.
